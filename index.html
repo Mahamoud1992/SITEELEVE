@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Site d'aide en mathématiques pour les élèves de 3ème - Cours, exercices interactifs et préparation au Brevet">
-    <title>Maths 3ème - Aide en ligne pour réussir en mathématiques</title>
+    <title>Maths 3ème - Collège Hayel Said</title>
     <style>
         :root {
             --primary: #4361ee;
@@ -51,16 +50,30 @@
             align-items: center;
         }
         
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .college-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 5px;
+        }
+        
+        .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
             display: flex;
-            align-items: center;
+            flex-direction: column;
         }
         
-        .logo i {
-            margin-right: 10px;
-            font-size: 2rem;
+        .logo-subtitle {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 2px;
         }
         
         nav ul {
@@ -114,30 +127,26 @@
             color: #555;
         }
         
-        .access-info {
+        .college-info {
             background-color: #e7f5ff;
             border-radius: 10px;
             padding: 1.5rem;
             margin: 2rem auto;
             max-width: 600px;
             border-left: 5px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
         
-        .access-info h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
+        .college-info-logo {
+            height: 80px;
+            width: auto;
+            border-radius: 8px;
         }
         
-        .url-box {
-            background-color: white;
-            border: 2px dashed var(--primary);
-            border-radius: 5px;
-            padding: 1rem;
-            font-family: monospace;
-            font-size: 1.1rem;
-            margin: 1rem 0;
-            text-align: center;
-            word-break: break-all;
+        .college-info-text {
+            flex: 1;
         }
         
         .btn {
@@ -219,106 +228,6 @@
             color: #666;
         }
         
-        .exercises {
-            background-color: white;
-            padding: 4rem 0;
-            border-top: 1px solid #eaeaea;
-        }
-        
-        .exercises-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .exercise-card {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--success);
-        }
-        
-        .exercise-card:hover {
-            background-color: #e9ecef;
-            transform: scale(1.03);
-        }
-        
-        .exercise-card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        .calculator {
-            padding: 4rem 0;
-            background-color: #f0f2f5;
-        }
-        
-        .calculator-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .calculator-screen {
-            background-color: #1a1a1a;
-            color: #00ff41;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
-            text-align: right;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            word-break: break-all;
-        }
-        
-        .calculator-buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        
-        .calc-btn {
-            padding: 15px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #e9ecef;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .calc-btn:hover {
-            background-color: #dee2e6;
-        }
-        
-        .calc-btn.operator {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .calc-btn.operator:hover {
-            background-color: var(--secondary);
-        }
-        
-        .calc-btn.equals {
-            background-color: var(--accent);
-            color: white;
-            grid-column: span 2;
-        }
-        
-        .calc-btn.equals:hover {
-            background-color: #d81159;
-        }
-        
         footer {
             background-color: var(--dark);
             color: white;
@@ -330,6 +239,19 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
         }
         
         .footer-section h3 {
@@ -370,6 +292,11 @@
                 text-align: center;
             }
             
+            .logo-container {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -396,7 +323,12 @@
                 font-size: 2rem;
             }
             
-            .topics-grid, .exercises-grid {
+            .college-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .topics-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -407,9 +339,12 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-square-root-alt"></i>
-                    <span>Maths 3ème</span>
+                <div class="logo-container">
+                    <img src="logo-hayel-said.png" alt="Logo Collège Hayel Said" class="college-logo">
+                    <div class="logo-text">
+                        Maths 3ème
+                        <span class="logo-subtitle">Collège Hayel Said</span>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -428,24 +363,16 @@
 
     <section class="hero">
         <div class="container">
+            <div class="college-info">
+                <img src="logo-hayel-said.png" alt="Logo Collège Hayel Said" class="college-info-logo">
+                <div class="college-info-text">
+                    <h2>Collège Hayel Said</h2>
+                    <p>Site officiel de mathématiques pour les élèves de 3ème</p>
+                </div>
+            </div>
+            
             <h1>Réussis en Mathématiques en 3ème</h1>
             <p>Des cours clairs, des exercices interactifs et des outils pour t'aider à maîtriser le programme de mathématiques de troisième.</p>
-            
-            <div class="access-info">
-                <h3><i class="fas fa-link"></i> Comment accéder au site</h3>
-                <p>Pour utiliser ce site depuis chez toi, il suffit de :</p>
-                <ol>
-                    <li>Ouvrir ton navigateur (Chrome, Firefox, Safari...)</li>
-                    <li>Copier-coller l'adresse suivante :</li>
-                </ol>
-                <div class="url-box" id="siteUrl">
-                    https://votrenomutilisateur.github.io/maths-3eme
-                </div>
-                <p>Tu peux enregistrer le site dans tes favoris pour y accéder rapidement !</p>
-                <button class="btn" onclick="copyUrl()">
-                    <i class="fas fa-copy"></i> Copier l'adresse
-                </button>
-            </div>
             
             <a href="#topics" class="btn">Commencer à apprendre</a>
             <a href="#calculator" class="btn btn-secondary">Utiliser la calculatrice</a>
@@ -488,83 +415,6 @@
                         <a href="#" class="btn">Voir le cours</a>
                     </div>
                 </div>
-                
-                <div class="topic-card">
-                    <div class="topic-icon">
-                        <i class="fas fa-function"></i>
-                    </div>
-                    <div class="topic-content">
-                        <h3>Fonctions</h3>
-                        <p>Notion de fonction, représentation graphique, fonctions affines et linéaires.</p>
-                        <a href="#" class="btn">Voir le cours</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="exercises" class="exercises">
-        <div class="container">
-            <h2 class="section-title">Exercices interactifs</h2>
-            <div class="exercises-grid">
-                <div class="exercise-card">
-                    <h3>Calcul mental</h3>
-                    <p>Teste tes compétences en calcul rapide</p>
-                    <a href="#" class="btn">Commencer</a>
-                </div>
-                
-                <div class="exercise-card">
-                    <h3>Problèmes</h3>
-                    <p>Résous des problèmes concrets</p>
-                    <a href="#" class="btn">Commencer</a>
-                </div>
-                
-                <div class="exercise-card">
-                    <h3>Géométrie</h3>
-                    <p>Exercices de construction et démonstration</p>
-                    <a href="#" class="btn">Commencer</a>
-                </div>
-                
-                <div class="exercise-card">
-                    <h3>QCM Brevet</h3>
-                    <p>Prépare-toi pour l'épreuve de maths</p>
-                    <a href="#" class="btn">Commencer</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <h2 class="section-title">Calculatrice scientifique</h2>
-            <div class="calculator-container">
-                <div class="calculator-screen" id="screen">0</div>
-                <div class="calculator-buttons">
-                    <button class="calc-btn" onclick="clearScreen()">C</button>
-                    <button class="calc-btn" onclick="deleteLast()">⌫</button>
-                    <button class="calc-btn operator" onclick="appendToScreen('/')">/</button>
-                    <button class="calc-btn operator" onclick="appendToScreen('*')">×</button>
-                    
-                    <button class="calc-btn" onclick="appendToScreen('7')">7</button>
-                    <button class="calc-btn" onclick="appendToScreen('8')">8</button>
-                    <button class="calc-btn" onclick="appendToScreen('9')">9</button>
-                    <button class="calc-btn operator" onclick="appendToScreen('-')">-</button>
-                    
-                    <button class="calc-btn" onclick="appendToScreen('4')">4</button>
-                    <button class="calc-btn" onclick="appendToScreen('5')">5</button>
-                    <button class="calc-btn" onclick="appendToScreen('6')">6</button>
-                    <button class="calc-btn operator" onclick="appendToScreen('+')">+</button>
-                    
-                    <button class="calc-btn" onclick="appendToScreen('1')">1</button>
-                    <button class="calc-btn" onclick="appendToScreen('2')">2</button>
-                    <button class="calc-btn" onclick="appendToScreen('3')">3</button>
-                    <button class="calc-btn equals" onclick="calculate()">=</button>
-                    
-                    <button class="calc-btn" onclick="appendToScreen('0')">0</button>
-                    <button class="calc-btn" onclick="appendToScreen('.')">.</button>
-                    <button class="calc-btn" onclick="appendToScreen('(')">(</button>
-                    <button class="calc-btn" onclick="appendToScreen(')')">)</button>
-                </div>
             </div>
         </div>
     </section>
@@ -573,84 +423,48 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Maths 3ème</h3>
+                    <div class="footer-logo">
+                        <img src="logo-hayel-said.png" alt="Logo Collège Hayel Said" class="footer-logo-img">
+                        <div>
+                            <h3>Maths 3ème</h3>
+                            <p>Collège Hayel Said</p>
+                        </div>
+                    </div>
                     <p>Site éducatif conçu pour aider les élèves de troisième à réussir en mathématiques.</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Accès au site</h3>
+                    <h3>Accès rapide</h3>
                     <ul>
-                        <li><a href="#" id="footerUrl">https://Mahamoud1992.github.io/siteeleve</a></li>
-                        <li><a href="#" onclick="copyUrl(); return false;">Copier l'adresse</a></li>
-                        <li><a href="#">Guide d'utilisation</a></li>
+                        <li><a href="#topics">Cours de mathématiques</a></li>
+                        <li><a href="#exercises">Exercices interactifs</a></li>
+                        <li><a href="#calculator">Calculatrice</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="mailto:moud011992@outlook.fr">contact@outlook.fr</a></li>
-                        <li><a href="#">Poser une question</a></li>
+                        <li><a href="mailto:contact@college-hayel-said.fr">Contact professeur</a></li>
+                        <li><a href="#">Espace élèves</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Maths 3ème - Tous droits réservés</p>
+                <p>&copy; 2023 Collège Hayel Said - Tous droits réservés</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Calculatrice scientifique
-        const screen = document.getElementById('screen');
-        let currentInput = '0';
-        let shouldResetScreen = false;
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
         
-        function updateScreen() {
-            screen.textContent = currentInput;
-        }
-        
-        function appendToScreen(value) {
-            if (currentInput === '0' || shouldResetScreen) {
-                currentInput = value;
-                shouldResetScreen = false;
-            } else {
-                currentInput += value;
-            }
-            updateScreen();
-        }
-        
-        function clearScreen() {
-            currentInput = '0';
-            updateScreen();
-        }
-        
-        function deleteLast() {
-            if (currentInput.length > 1) {
-                currentInput = currentInput.slice(0, -1);
-            } else {
-                currentInput = '0';
-            }
-            updateScreen();
-        }
-        
-        function calculate() {
-            try {
-                // Remplace × par * pour l'évaluation
-                let expression = currentInput.replace(/×/g, '*');
-                currentInput = eval(expression).toString();
-                updateScreen();
-                shouldResetScreen = true;
-            } catch (error) {
-                currentInput = 'Erreur';
-                updateScreen();
-                setTimeout(() => {
-                    currentInput = '0';
-                    updateScreen();
-                }, 1500);
-            }
-        }
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
         
         // Navigation fluide
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -668,27 +482,6 @@
                 }
             });
         });
-        
-        // Menu mobile
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-        });
-        
-        // Fonction pour copier l'URL du site
-        function copyUrl() {
-            const url = document.getElementById('siteUrl').textContent;
-            navigator.clipboard.writeText(url).then(() => {
-                alert('Adresse copiée ! Tu peux maintenant la coller dans ton navigateur.');
-            }).catch(err => {
-                console.error('Erreur lors de la copie: ', err);
-            });
-        }
-        
-        // Mettre à jour l'URL dans le footer
-        document.getElementById('footerUrl').textContent = window.location.href;
     </script>
 </body>
 </html>
