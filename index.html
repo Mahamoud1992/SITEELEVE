@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site d'aide en mathématiques pour les élèves de 3ème - Cours, exercices et outils interactifs">
+    <title>Maths 3ème - Aide en ligne pour le collège</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background-color: white;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #d81159;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .topics {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .topic-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .topic-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .topic-content {
+            padding: 1.5rem;
+        }
+        
+        .topic-content h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .topic-content p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .exercises {
+            background-color: white;
+            padding: 4rem 0;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .exercise-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--success);
+        }
+        
+        .exercise-card:hover {
+            background-color: #e9ecef;
+            transform: scale(1.03);
+        }
+        
+        .exercise-card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .calculator {
+            padding: 4rem 0;
+            background-color: #f0f2f5;
+        }
+        
+        .calculator-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .calculator-screen {
+            background-color: #1a1a1a;
+            color: #00ff41;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            text-align: right;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            word-break: break-all;
+        }
+        
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .calc-btn {
+            padding: 15px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .calc-btn:hover {
+            background-color: #dee2e6;
+        }
+        
+        .calc-btn.operator {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .calc-btn.operator:hover {
+            background-color: var(--secondary);
+        }
+        
+        .calc-btn.equals {
+            background-color: var(--accent);
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .calc-btn.equals:hover {
+            background-color: #d81159;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .topics-grid, .exercises-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-square-root-alt"></i>
+                    <span>Maths 3ème</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#topics">Cours</a></li>
+                        <li><a href="#exercises">Exercices</a></li>
+                        <li><a href="#calculator">Calculatrice</a></li>
+                        <li><a href="#about">À propos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Réussis en Mathématiques en 3ème</h1>
+            <p>Des cours clairs, des exercices interactifs et des outils pour t'aider à maîtriser le programme de mathématiques de troisième.</p>
+            <a href="#topics" class="btn">Commencer à apprendre</a>
+        </div>
+    </section>
+
+    <section id="topics" class="topics">
+        <div class="container">
+            <h2 class="section-title">Cours par thème</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Calcul numérique</h3>
+                        <p>Nombres relatifs, fractions, puissances, calcul littéral et équations.</p>
+                        <a href="#" class="btn">Voir le cours</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Géométrie</h3>
+                        <p>Théorème de Pythagore, Thalès, trigonométrie et transformations géométriques.</p>
+                        <a href="#" class="btn">Voir le cours</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Statistiques et probabilités</h3>
+                        <p>Moyenne, médiane, étendue, diagrammes et calcul de probabilités.</p>
+                        <a href="#" class="btn">Voir le cours</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <i class="fas fa-function"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Fonctions</h3>
+                        <p>Notion de fonction, représentation graphique, fonctions affines et linéaires.</p>
+                        <a href="#" class="btn">Voir le cours</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="exercises" class="exercises">
+        <div class="container">
+            <h2 class="section-title">Exercices interactifs</h2>
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <h3>Calcul mental</h3>
+                    <p>Teste tes compétences en calcul rapide</p>
+                    <a href="#" class="btn">Commencer</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <h3>Problèmes</h3>
+                    <p>Résous des problèmes concrets</p>
+                    <a href="#" class="btn">Commencer</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <h3>Géométrie</h3>
+                    <p>Exercices de construction et démonstration</p>
+                    <a href="#" class="btn">Commencer</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <h3>QCM Brevet</h3>
+                    <p>Prépare-toi pour l'épreuve de maths</p>
+                    <a href="#" class="btn">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <h2 class="section-title">Calculatrice scientifique</h2>
+            <div class="calculator-container">
+                <div class="calculator-screen" id="screen">0</div>
+                <div class="calculator-buttons">
+                    <button class="calc-btn" onclick="clearScreen()">C</button>
+                    <button class="calc-btn" onclick="deleteLast()">⌫</button>
+                    <button class="calc-btn operator" onclick="appendToScreen('/')">/</button>
+                    <button class="calc-btn operator" onclick="appendToScreen('*')">×</button>
+                    
+                    <button class="calc-btn" onclick="appendToScreen('7')">7</button>
+                    <button class="calc-btn" onclick="appendToScreen('8')">8</button>
+                    <button class="calc-btn" onclick="appendToScreen('9')">9</button>
+                    <button class="calc-btn operator" onclick="appendToScreen('-')">-</button>
+                    
+                    <button class="calc-btn" onclick="appendToScreen('4')">4</button>
+                    <button class="calc-btn" onclick="appendToScreen('5')">5</button>
+                    <button class="calc-btn" onclick="appendToScreen('6')">6</button>
+                    <button class="calc-btn operator" onclick="appendToScreen('+')">+</button>
+                    
+                    <button class="calc-btn" onclick="appendToScreen('1')">1</button>
+                    <button class="calc-btn" onclick="appendToScreen('2')">2</button>
+                    <button class="calc-btn" onclick="appendToScreen('3')">3</button>
+                    <button class="calc-btn equals" onclick="calculate()">=</button>
+                    
+                    <button class="calc-btn" onclick="appendToScreen('0')">0</button>
+                    <button class="calc-btn" onclick="appendToScreen('.')">.</button>
+                    <button class="calc-btn" onclick="appendToScreen('(')">(</button>
+                    <button class="calc-btn" onclick="appendToScreen(')')">)</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Maths 3ème</h3>
+                    <p>Site éducatif conçu pour aider les élèves de troisième à réussir en mathématiques.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">Programme officiel</a></li>
+                        <li><a href="#">Annales du Brevet</a></li>
+                        <li><a href="#">Ressources supplémentaires</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@maths3eme.fr">contact@maths3eme.fr</a></li>
+                        <li><a href="#">Formulaire de contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Maths 3ème - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Calculatrice scientifique
+        const screen = document.getElementById('screen');
+        let currentInput = '0';
+        let shouldResetScreen = false;
+        
+        function updateScreen() {
+            screen.textContent = currentInput;
+        }
+        
+        function appendToScreen(value) {
+            if (currentInput === '0' || shouldResetScreen) {
+                currentInput = value;
+                shouldResetScreen = false;
+            } else {
+                currentInput += value;
+            }
+            updateScreen();
+        }
+        
+        function clearScreen() {
+            currentInput = '0';
+            updateScreen();
+        }
+        
+        function deleteLast() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateScreen();
+        }
+        
+        function calculate() {
+            try {
+                // Remplace × par * pour l'évaluation
+                let expression = currentInput.replace(/×/g, '*');
+                currentInput = eval(expression).toString();
+                updateScreen();
+                shouldResetScreen = true;
+            } catch (error) {
+                currentInput = 'Erreur';
+                updateScreen();
+                setTimeout(() => {
+                    currentInput = '0';
+                    updateScreen();
+                }, 1500);
+            }
+        }
+        
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
